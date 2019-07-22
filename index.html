@@ -21,10 +21,24 @@
         <p>{{ product.description }}</p>
         <a :href="product.link">Buy it now</a>
         <p v-show="product.onSale">On sale</p>
+
+        <ul>
+          <li v-for="detail in product.details">{{ detail }}</li>
+        </ul>
+
+        <div v-for="variant in product.variants" :key="variant.variantId">
+          <p>{{ variant.variantColor }}</p>
+        </div>
+
+        <ul>
+          <li v-for="size in product.sizes">
+            <span>{{ size }}</span>
+          </li>
+        </ul>
       </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>
   </div>
 </body>
