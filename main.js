@@ -6,7 +6,7 @@ var app = new Vue({
       description: 'Beautiful and colored socks',
       link: 'http://127.0.0.1:5500/index.html',
       image: './assets/vmSocks-green-onWhite.jpg',
-      onSale: true,
+      inStock: true,
       details: ['80% cotton', '20% polyester', 'Gender neutral'],
       variants: [
         {
@@ -31,7 +31,7 @@ var app = new Vue({
     updateProduct(variantImage) {
       this.product.image = variantImage;
     },
-    deleteFromCart() {
+    rmFromCart() {
       this.cart -= 1;
     }
   }
