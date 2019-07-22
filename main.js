@@ -4,21 +4,35 @@ var app = new Vue({
     product: {
       name: 'Socks',
       description: 'Beautiful and colored socks',
-      image: './assets/vmSocks-green-onWhite.jpg',
       link: 'http://127.0.0.1:5500/index.html',
+      image: './assets/vmSocks-green-onWhite.jpg',
       onSale: true,
       details: ['80% cotton', '20% polyester', 'Gender neutral'],
       variants: [
         {
           variantId: 2234,
-          variantColor: "green"
+          variantColor: "green",
+          variantImage: './assets/vmSocks-green-onWhite.jpg',
         },
         {
           variantId: 2235,
-          variantColor: "blue"
+          variantColor: "blue",
+          variantImage: './assets/vmSocks-blue-onWhite.jpg',
         },
       ],
       sizes: ['34 - 35', '36 - 41', '42 - 44'],
+    },
+    cart: null,
+  },
+  methods: {
+    addToCart() {
+      this.cart += 1;
+    },
+    updateProduct(variantImage) {
+      this.product.image = variantImage;
+    },
+    deleteFromCart() {
+      this.cart -= 1;
     }
   }
 });

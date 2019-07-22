@@ -27,7 +27,7 @@
         </ul>
 
         <div v-for="variant in product.variants" :key="variant.variantId">
-          <p>{{ variant.variantColor }}</p>
+          <p @mouseover="updateProduct(variant.variantImage)">{{ variant.variantColor }}</p>
         </div>
 
         <ul>
@@ -35,11 +35,18 @@
             <span>{{ size }}</span>
           </li>
         </ul>
-      </div>
+
+        <button v-on:click="addToCart">Add to Cart</button>
+        <button @click="deleteFromCart">Delete from Cart</button>
+
+        <div class="cart">
+          <p>Cart({{ cart }})</p>
+        </div>
+
+        </div>
+      </div>    
     </div>
-    
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>
-  </div>
 </body>
 </html>
