@@ -45,10 +45,6 @@ Vue.component('product', {
         </button>
         <button @click="rmFromCart">Rm from Cart</button>
 
-        <div class="cart">
-          <p>Cart({{ cart }})</p>
-        </div>
-
       </div>    
     </div>`,
     data() {
@@ -71,23 +67,26 @@ Vue.component('product', {
               variantId: 2235,
               variantColor: "blue",
               variantImage: './assets/vmSocks-blue-onWhite.jpg',
-              variantQuantity: 0,
+              variantQuantity: 50,
             },
           ],
           sizes: ['34 - 35', '36 - 41', '42 - 44'],
         },
-        cart: null,
       };
     },
     methods: {
       addToCart() {
-        this.cart += 1;
+        const { product } = this;
+        const { variants } = product;
+        this.$emit('add-to-cart', variants[product.selectedVariant].variantId);
       },
       updateProduct(index) {
         this.product.selectedVariant = index;
       },
       rmFromCart() {
-        this.cart -= 1;
+        const { product } = this;
+        const { variants } = product;
+        this.$emit('rm-from-cart', variants[product.selectedVariant].variantId);
       }
     },
     computed: {
@@ -118,5 +117,14 @@ var app = new Vue({
   el: '#app',
   data: {
     premium: true,
+    cart: [],
+  },
+  methods: {
+    updateCart(id) {
+      this.cart.push(id);
+    },
+    rmFromCart(id) {
+      this.cart = this.cart.filter(variantId => variantId !== id);
+    }
   }
 });
